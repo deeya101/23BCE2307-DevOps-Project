@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: symposium-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: symposium-site
+  template:
+    metadata:
+      labels:
+        app: symposium-site
+    spec:
+      containers:
+      - name: symposium-site
+        image: deeya2307/symposium-site:latest
+        ports:
+        - containerPort: 80
