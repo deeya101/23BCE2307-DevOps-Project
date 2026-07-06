@@ -1,27 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>College Technical Symposium</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Symposium 2026 - Department of Computer Science</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", Verdana, Arial, sans-serif;
+    color: #2b2b2b;
+    line-height: 1.6;
+    background-image: radial-gradient(#e9e2d3 1px, transparent 1px);
+    background-size: 18px 18px;
+    background-color: #faf7f1;
+  }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; }
+  a { color: #7a1f2b; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 22px; }
+
+  header {
+    background: #7a1f2b;
+    color: #fff;
+    padding: 16px 0;
+    border-bottom: 5px solid #c9a24a;
+  }
+  .navbar { display: flex; justify-content: space-between; align-items: center; }
+  .navbar h2 { color: #fff; font-size: 1.15rem; font-weight: normal; letter-spacing: 0.02em; }
+  nav ul { list-style: none; display: flex; gap: 22px; }
+  nav a { color: #f2e4c8; text-decoration: none; font-size: 0.9rem; }
+  nav a:hover { color: #fff; text-decoration: underline; }
+
+  .hero {
+    position: relative;
+    background: #fff;
+    border-bottom: 1px solid #e6ddc9;
+    padding: 46px 0 40px;
+  }
+  .ribbon {
+    position: absolute; top: 18px; right: 22px;
+    background: #c9a24a; color: #3a2a05;
+    font-size: 0.78rem; font-weight: bold;
+    padding: 6px 14px; border-radius: 3px;
+    letter-spacing: 0.03em;
+  }
+  .hero h1 { font-size: 2.1rem; color: #7a1f2b; margin-bottom: 10px; }
+  .hero p { color: #4a4a4a; max-width: 620px; }
+  .hero .details {
+    margin-top: 18px; font-size: 0.94rem; color: #333;
+    background: #f7f1e4; display: inline-block; padding: 10px 16px; border-radius: 4px;
+    border-left: 3px solid #c9a24a;
+  }
+  .hero .details b { color: #7a1f2b; }
+  .btn {
+    display: inline-block;
+    background: #7a1f2b;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-top: 18px;
+    font-size: 0.9rem;
+    border-radius: 3px;
+    transition: background 0.15s ease;
+  }
+  .btn:hover { background: #5c1620; }
+
+  section { padding: 40px 0; border-bottom: 1px solid #e6ddc9; }
+  section h2 {
+    color: #7a1f2b;
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+  }
+  section h2::after {
+    content: "";
+    display: block;
+    width: 46px;
+    height: 3px;
+    background: #c9a24a;
+    margin-top: 8px;
+  }
+  section > .wrap > p.lead { color: #5a5a5a; margin: 14px 0 18px; max-width: 640px; }
+
+  .day-label {
+    font-weight: bold; margin: 20px 0 6px; color: #7a1f2b;
+    font-family: Georgia, serif; font-size: 1.05rem;
+  }
+  table.schedule { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 0.92rem; background: #fff; }
+  table.schedule th, table.schedule td {
+    text-align: left; padding: 9px 12px; border: 1px solid #e6ddc9;
+  }
+  table.schedule th { background: #f7f1e4; color: #7a1f2b; font-weight: 600; }
+  table.schedule tr:nth-child(even) { background: #fdfbf6; }
+
+  .speakers { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 6px; }
+  .speaker-card {
+    background: #fff; width: 270px; padding: 0;
+    border: 1px solid #e6ddc9; border-radius: 4px; overflow: hidden;
+  }
+  .speaker-card .top-bar { height: 6px; background: #c9a24a; }
+  .speaker-card .content { padding: 14px 16px; }
+  .speaker-card h3 { font-size: 1rem; color: #222; margin-bottom: 2px; }
+  .speaker-card .role { font-size: 0.85rem; color: #7a1f2b; margin-bottom: 8px; font-style: italic; }
+  .speaker-card p { font-size: 0.87rem; color: #555; }
+
+  .reg-box {
+    background: #fff; border: 1px solid #e6ddc9; border-radius: 4px;
+    padding: 22px 24px; margin-top: 6px;
+  }
+  .reg-box ol { margin: 12px 0 16px 20px; font-size: 0.92rem; color: #444; }
+  .reg-box li { margin-bottom: 4px; }
+  .reg-box .contact {
+    font-size: 0.88rem; color: #555; margin-top: 14px;
+    border-top: 1px dashed #ddd; padding-top: 12px;
+  }
+
+  ul.announcements { margin-top: 6px; }
+  ul.announcements li {
+    margin-bottom: 14px; font-size: 0.92rem; background: #fff;
+    border: 1px solid #e6ddc9; border-left: 3px solid #7a1f2b;
+    padding: 10px 14px; border-radius: 3px;
+    list-style: none;
+  }
+  ul.announcements .date { color: #7a1f2b; font-weight: bold; font-size: 0.8rem; display: block; margin-bottom: 3px; }
+
+  footer {
+    background: #7a1f2b; color: #f2e4c8; padding: 22px 0; text-align: center; font-size: 0.85rem;
+  }
+  footer a { color: #fff; }
+
+  @media (max-width: 640px) {
+    .navbar { flex-direction: column; align-items: flex-start; gap: 8px; }
+    nav ul { flex-wrap: wrap; gap: 12px; }
+    .speaker-card { width: 100%; }
+    .ribbon { position: static; display: inline-block; margin-bottom: 14px; }
+  }
+</style>
 </head>
 <body>
-    <h1>Annual Technical Symposium</h1>
-    <p>Welcome to our college's annual technical symposium!</p>
 
+<header>
+  <div class="wrap navbar">
+    <h2>Department of Computer Science</h2>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#speakers">Speakers</a></li>
+        <li><a href="#register">Registration</a></li>
+        <li><a href="#announcements">Announcements</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="ribbon">Registrations Open</div>
+    <h1>Annual Technical Symposium 2026</h1>
+    <p>Organized by the Department of Computer Science Student Committee. Three days of paper presentations, workshops and a hackathon, open to all students.</p>
+    <div class="details">
+      <b>Dates:</b> September 18-20, 2026 &nbsp; | &nbsp;
+      <b>Venue:</b> Main Auditorium and Seminar Halls &nbsp; | &nbsp;
+      <b>Entry:</b> Free for registered students
+    </div>
+    <br>
+    <a href="#register" class="btn">Register for the event</a>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <h2>About the Symposium</h2>
+    <p class="lead">The Technical Symposium is organized every year by the Computer Science department to give students a platform to present academic papers, run hands-on workshops and take part in a hackathon judged by faculty and visiting industry professionals. This year's edition includes 12 tracks across AI, embedded systems, web development and cybersecurity, along with a 24-hour hackathon on the final two days.</p>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="wrap">
     <h2>Event Schedule</h2>
-    <ul>
-        <li>Day 1: Inauguration & Keynote</li>
-        <li>Day 2: Technical Paper Presentations</li>
-        <li>Day 3: Hackathon & Prize Distribution</li>
-    </ul>
+    <p class="lead">Timings are tentative and subject to minor changes. Please check the announcements section for updates.</p>
 
+    <div class="day-label">Day 1 - September 18</div>
+    <table class="schedule">
+      <tr><th>Time</th><th>Session</th><th>Venue</th></tr>
+      <tr><td>9:00 AM</td><td>Inauguration and Keynote Address</td><td>Main Auditorium</td></tr>
+      <tr><td>11:00 AM</td><td>Paper Presentations - Track A (AI &amp; Data)</td><td>Seminar Hall 1</td></tr>
+      <tr><td>2:00 PM</td><td>Workshop: Building with Containers</td><td>Lab 3</td></tr>
+      <tr><td>4:30 PM</td><td>Hackathon Kickoff</td><td>Innovation Lab</td></tr>
+    </table>
+
+    <div class="day-label">Day 2 - September 19</div>
+    <table class="schedule">
+      <tr><th>Time</th><th>Session</th><th>Venue</th></tr>
+      <tr><td>9:30 AM</td><td>Paper Presentations - Track B (Embedded Systems)</td><td>Seminar Hall 2</td></tr>
+      <tr><td>11:30 AM</td><td>Industry Talk: Careers in DevOps</td><td>Main Auditorium</td></tr>
+      <tr><td>1:00 PM</td><td>Hackathon - Build Phase</td><td>Innovation Lab</td></tr>
+      <tr><td>5:00 PM</td><td>Workshop: Intro to Kubernetes</td><td>Lab 3</td></tr>
+    </table>
+
+    <div class="day-label">Day 3 - September 20</div>
+    <table class="schedule">
+      <tr><th>Time</th><th>Session</th><th>Venue</th></tr>
+      <tr><td>9:00 AM</td><td>Hackathon - Final Demos</td><td>Innovation Lab</td></tr>
+      <tr><td>12:00 PM</td><td>Best Paper and Poster Awards</td><td>Main Auditorium</td></tr>
+      <tr><td>2:30 PM</td><td>Closing Panel Discussion</td><td>Main Auditorium</td></tr>
+      <tr><td>4:00 PM</td><td>Prize Distribution and Closing</td><td>Main Auditorium</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="speakers">
+  <div class="wrap">
+    <h2>Guest Speakers</h2>
+    <p class="lead">Confirmed speakers for this year's symposium.</p>
+    <div class="speakers">
+      <div class="speaker-card">
+        <div class="top-bar"></div>
+        <div class="content">
+          <h3>Dr. Ritika Menon</h3>
+          <div class="role">Systems Researcher</div>
+          <p>Talk on scalable infrastructure design and distributed systems.</p>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <div class="top-bar"></div>
+        <div class="content">
+          <h3>Arjun Kapoor</h3>
+          <div class="role">DevOps Lead, FinEdge</div>
+          <p>Practical session on CI/CD pipelines and production deployments.</p>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <div class="top-bar"></div>
+        <div class="content">
+          <h3>Sara Nakamura</h3>
+          <div class="role">Robotics Engineer</div>
+          <p>Demo on autonomous navigation using low-cost hardware.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="register">
+  <div class="wrap">
     <h2>Registration</h2>
-    <p>Registration is open! Contact the college office or email symposium@college.edu</p>
+    <div class="reg-box">
+      <p>Registration is free and open to all students of the college. Workshop seats are limited and allotted on a first-come, first-served basis.</p>
+      <ol>
+        <li>Fill the registration form with your college ID number.</li>
+        <li>Select your preferred workshop and hackathon track.</li>
+        <li>You will receive a confirmation email within 24 hours.</li>
+      </ol>
+      <a href="mailto:symposium@college.edu" class="btn">Register via Email</a>
+      <div class="contact">
+        Contact: symposium@college.edu &nbsp;|&nbsp; Phone: +91 98765 43210 &nbsp;|&nbsp; Last date to register: September 12, 2026
+      </div>
+    </div>
+  </div>
+</section>
 
-    <h2>Speakers</h2>
-    <p>Details about our guest speakers will be announced soon.</p>
-
+<section id="announcements">
+  <div class="wrap">
     <h2>Announcements</h2>
-    <p>Stay tuned for the latest updates here.</p>
+    <ul class="announcements">
+      <li><span class="date">July 2, 2026</span>Hackathon problem statements have been released. Check the notice board for details.</li>
+      <li><span class="date">June 20, 2026</span>Registration is now open. Early registrants will get priority for workshop seats.</li>
+      <li><span class="date">June 5, 2026</span>Call for papers is open. Submit abstracts to the department office by August 15, 2026.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Department of Computer Science - Technical Symposium Committee<br>
+    &copy; 2026 - This website is maintained by the student organizing committee.
+  </div>
+</footer>
+
 </body>
 </html>
